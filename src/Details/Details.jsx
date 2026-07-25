@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useWatchlist } from "../context/WatchlistContext"; // ⚠️ IMPORTANT: Check this path!
-import { VEGAMOVIES_BASE_URL, BOOKMYSHOW_BASE_URL } from "../config"; // 🚨 NEW OTT LOGIC: Import constants
+import { VEGAMOVIES_BASE_URL } from "../config"; // BOOKMYSHOW_BASE_URL hata diya kyunki hum Google bypass use karenge
 
 const Details = () => {
   const { mediaType = "movie", id } = useParams();
@@ -82,30 +82,18 @@ const Details = () => {
 
   const streamingPlatforms = Array.from(new Map(allPlatforms.map(p => [p.provider_id, p])).values());
 
-  // 🚨 NEW OTT LOGIC: Calculate if movie is in theaters & Handle Click
+  // Check if movie is in theaters (Released within last 45 days)
   const checkInTheaters = () => {
     if (mediaType !== "movie" || !data.release_date) return false;
     const releaseDate = new Date(data.release_date);
     const today = new Date();
     const diffTime = today - releaseDate;
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
-    // Agar release hue 45 din se kam hue hain, toh theater mein hai
     return diffDays >= 0 && diffDays <= 45; 
   };
 
   const inTheaters = checkInTheaters();
-
-  const handleWatchClick = () => {
-    const title = data.title || data.name;
-    const formattedTitle = encodeURIComponent(title);
-    
-    if (inTheaters) {
-      window.open(`${BOOKMYSHOW_BASE_URL}?q=${formattedTitle}`, '_blank');
-    } else {
-      window.open(`${VEGAMOVIES_BASE_URL}/?s=${formattedTitle}`, '_blank');
-    }
-  };
-  // 🚨 END NEW OTT LOGIC
+  const formattedTitle = encodeURIComponent(data.title || data.name);
 
   return (
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans pb-16">
@@ -194,13 +182,23 @@ const Details = () => {
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap gap-4">
               
-              {/* 🚨 NEW OTT LOGIC: Action Button for BMS / Vega */}
+              {/* ALWAYS SHOW DOWNLOAD BUTTON */}
               <button 
-                onClick={handleWatchClick}
+                onClick={() => window.open(`${VEGAMOVIES_BASE_URL}/?s=${formattedTitle}`, '_blank')}
                 className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-600 text-white border-blue-500 hover:bg-blue-700 shadow-blue-900/30"
               >
-                {inTheaters ? "🎟️ Book Tickets" : "⬇️ Download Movie"}
+                ⬇️ Download Movie
               </button>
+
+              {/* SHOW BOOK TICKETS ONLY IF IN THEATERS (WITH GOOGLE BYPASS) */}
+              {inTheaters && (
+                <button 
+                  onClick={() => window.open(`https://www.google.com/search?q=${formattedTitle}+movie+tickets+bookmyshow`, '_blank')}
+                  className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-pink-600 text-white border-pink-500 hover:bg-pink-700 shadow-pink-900/30"
+                >
+                  🎟️ Book Tickets
+                </button>
+              )}
               
               {trailer && (
                 <a 
