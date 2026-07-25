@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useWatchlist } from "../context/WatchlistContext"; // ⚠️ IMPORTANT: Check this path!
-import { VEGAMOVIES_BASE_URL } from "../config"; // BOOKMYSHOW_BASE_URL hata diya kyunki hum Google bypass use karenge
+import { useWatchlist } from "../context/WatchlistContext"; 
+import { VEGAMOVIES_BASE_URL, ROGMOVIES_BASE_URL } from "../config"; // 🚨 ROGMOVIES IMPORT KIYA
 
 const Details = () => {
   const { mediaType = "movie", id } = useParams();
@@ -12,11 +12,8 @@ const Details = () => {
   const [hasError, setHasError] = useState(false);
 
   const { addToWatchlist, removeFromWatchlist, isAdded } = useWatchlist();
-
-  // Ref for controlling the cast scroll container
   const castContainerRef = useRef(null);
 
-  // Function to scroll left and right
   const scrollCast = (direction) => {
     if (castContainerRef.current) {
       const scrollAmount = direction === "left" ? -400 : 400; 
@@ -82,7 +79,6 @@ const Details = () => {
 
   const streamingPlatforms = Array.from(new Map(allPlatforms.map(p => [p.provider_id, p])).values());
 
-  // Check if movie is in theaters (Released within last 45 days)
   const checkInTheaters = () => {
     if (mediaType !== "movie" || !data.release_date) return false;
     const releaseDate = new Date(data.release_date);
@@ -94,6 +90,26 @@ const Details = () => {
 
   const inTheaters = checkInTheaters();
   const formattedTitle = encodeURIComponent(data.title || data.name);
+
+  // 🚨 NEW: INDIAN MOVIE CHECK LOGIC
+  const checkIsIndian = () => {
+    // 1. Check if production country is India
+    const fromIndia = data.production_countries?.some(country => country.iso_3166_1 === "IN");
+    
+    // 2. Check if the original language is an Indian language
+    const indianLanguages = ["hi", "ta", "te", "ml", "kn", "bn", "pa", "gu", "mr"];
+    const isIndianLang = indianLanguages.includes(data.original_language);
+
+    return fromIndia || isIndianLang;
+  };
+
+  const isIndianMovie = checkIsIndian();
+
+  // 🚨 NEW: DYNAMIC DOWNLOAD HANDLER
+  const handleDownloadClick = () => {
+    const downloadBaseUrl = isIndianMovie ? ROGMOVIES_BASE_URL : VEGAMOVIES_BASE_URL;
+    window.open(`${downloadBaseUrl}/?s=${formattedTitle}`, '_blank');
+  };
 
   return (
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans pb-16">
@@ -182,15 +198,15 @@ const Details = () => {
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap gap-4">
               
-              {/* ALWAYS SHOW DOWNLOAD BUTTON */}
+              {/* 🚨 DYNAMIC DOWNLOAD BUTTON */}
               <button 
-                onClick={() => window.open(`${VEGAMOVIES_BASE_URL}/?s=${formattedTitle}`, '_blank')}
+                onClick={handleDownloadClick}
                 className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-600 text-white border-blue-500 hover:bg-blue-700 shadow-blue-900/30"
               >
                 ⬇️ Download Movie
               </button>
 
-              {/* SHOW BOOK TICKETS ONLY IF IN THEATERS (WITH GOOGLE BYPASS) */}
+              {/* BOOK TICKETS (ONLY IF IN THEATERS) */}
               {inTheaters && (
                 <button 
                   onClick={() => window.open(`https://www.google.com/search?q=${formattedTitle}+movie+tickets+bookmyshow`, '_blank')}
@@ -226,11 +242,10 @@ const Details = () => {
 
       <hr className="border-slate-800/60 my-16 max-w-7xl mx-auto" />
 
-      {/* --- CAST SECTION (WITH SMART SCROLL & HIDDEN SCROLLBAR) --- */}
+      {/* --- CAST SECTION --- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative group">
         <h2 className="text-2xl font-bold text-white mb-6 border-l-4 border-purple-500 pl-3">Top Cast</h2>
         
-        {/* Left Scroll Button (Hidden on Mobile) */}
         {data.credits?.cast?.length > 0 && (
           <button 
             onClick={() => scrollCast("left")}
@@ -240,7 +255,6 @@ const Details = () => {
           </button>
         )}
 
-        {/* Scrollable Container */}
         <div 
           ref={castContainerRef}
           className="flex gap-4 overflow-x-auto pb-4 snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
@@ -261,7 +275,6 @@ const Details = () => {
           )}
         </div>
 
-        {/* Right Scroll Button (Hidden on Mobile) */}
         {data.credits?.cast?.length > 0 && (
           <button 
             onClick={() => scrollCast("right")}
