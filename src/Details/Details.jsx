@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useWatchlist } from "../context/WatchlistContext"; // ⚠️ IMPORTANT: Check this path!
+import { VEGAMOVIES_BASE_URL, BOOKMYSHOW_BASE_URL } from "../config"; // 🚨 NEW OTT LOGIC: Import constants
 
 const Details = () => {
   const { mediaType = "movie", id } = useParams();
@@ -12,13 +13,13 @@ const Details = () => {
 
   const { addToWatchlist, removeFromWatchlist, isAdded } = useWatchlist();
 
-  // 🚨 NEW: Ref for controlling the cast scroll container
+  // Ref for controlling the cast scroll container
   const castContainerRef = useRef(null);
 
-  // 🚨 NEW: Function to scroll left and right
+  // Function to scroll left and right
   const scrollCast = (direction) => {
     if (castContainerRef.current) {
-      const scrollAmount = direction === "left" ? -400 : 400; // Kitna scroll karna hai ek click par
+      const scrollAmount = direction === "left" ? -400 : 400; 
       castContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
@@ -32,8 +33,6 @@ const Details = () => {
       
       try {
         const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-        
-        // 🚨 SMART URL: Localhost aur Vercel dono ke liye perfect
         const BASE_URL = import.meta.env.DEV 
           ? "https://api.themoviedb.org/3" 
           : "/api/tmdb";
@@ -42,9 +41,7 @@ const Details = () => {
         const response = await fetch(targetUrl);
         
         if (!response.ok) throw new Error("Failed to fetch data");
-        
         const result = await response.json();
-        
         if (result.success === false) throw new Error("Movie not found");
         
         result.media_type = mediaType;
@@ -72,7 +69,6 @@ const Details = () => {
   const releaseYear = data.release_date?.slice(0, 4) || data.first_air_date?.slice(0, 4) || "N/A";
   const isMovieAdded = isAdded(data.id);
 
-  // OTT PROVIDERS LOGIC
   const watchData = data["watch/providers"]?.results;
   const regionData = watchData?.IN || watchData?.US; 
 
@@ -85,6 +81,31 @@ const Details = () => {
   ];
 
   const streamingPlatforms = Array.from(new Map(allPlatforms.map(p => [p.provider_id, p])).values());
+
+  // 🚨 NEW OTT LOGIC: Calculate if movie is in theaters & Handle Click
+  const checkInTheaters = () => {
+    if (mediaType !== "movie" || !data.release_date) return false;
+    const releaseDate = new Date(data.release_date);
+    const today = new Date();
+    const diffTime = today - releaseDate;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    // Agar release hue 45 din se kam hue hain, toh theater mein hai
+    return diffDays >= 0 && diffDays <= 45; 
+  };
+
+  const inTheaters = checkInTheaters();
+
+  const handleWatchClick = () => {
+    const title = data.title || data.name;
+    const formattedTitle = encodeURIComponent(title);
+    
+    if (inTheaters) {
+      window.open(`${BOOKMYSHOW_BASE_URL}?q=${formattedTitle}`, '_blank');
+    } else {
+      window.open(`${VEGAMOVIES_BASE_URL}/?s=${formattedTitle}`, '_blank');
+    }
+  };
+  // 🚨 END NEW OTT LOGIC
 
   return (
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans pb-16">
@@ -102,7 +123,7 @@ const Details = () => {
           alt="Backdrop" 
           className="w-full h-full object-cover opacity-30" 
         />
-        <div className="absolute inset-0 bg-linear-to-t from-[#0b0b13] via-[#0b0b13]/60 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b13] via-[#0b0b13]/60 to-transparent"></div>
       </div>
 
       {/* --- MAIN CONTENT --- */}
@@ -124,7 +145,6 @@ const Details = () => {
                 <div className="flex flex-wrap gap-3">
                   {streamingPlatforms.map(platform => {
                     const smartSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`Watch ${data.title || data.name} on ${platform.provider_name}`)}`;
-
                     return (
                       <a 
                         key={platform.provider_id} 
@@ -173,6 +193,15 @@ const Details = () => {
 
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap gap-4">
+              
+              {/* 🚨 NEW OTT LOGIC: Action Button for BMS / Vega */}
+              <button 
+                onClick={handleWatchClick}
+                className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-600 text-white border-blue-500 hover:bg-blue-700 shadow-blue-900/30"
+              >
+                {inTheaters ? "🎟️ Book Tickets" : "⬇️ Download Movie"}
+              </button>
+              
               {trailer && (
                 <a 
                   href="#trailer-section"
@@ -216,7 +245,6 @@ const Details = () => {
         {/* Scrollable Container */}
         <div 
           ref={castContainerRef}
-          // 🚨 FIX: Classes added to strictly hide the scrollbar across all browsers while keeping it scrollable
           className="flex gap-4 overflow-x-auto pb-4 snap-x [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
         >
           {data.credits?.cast?.slice(0, 15).map(actor => (
