@@ -30,7 +30,9 @@ const ViewAll = () => {
       setLoading(true);
       try {
         const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-        const BASE_URL = "/api/tmdb"; 
+         const BASE_URL = import.meta.env.DEV 
+          ? "https://api.themoviedb.org/3" 
+          : "/api/tmdb";
         
         // Clean target URL creation
         const targetUrl = `${BASE_URL}${currentCategory.endpoint}?api_key=${apiKey}&page=${page}`;

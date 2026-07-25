@@ -15,8 +15,9 @@ const HomePage = () => {
   const [activeGenre, setActiveGenre] = useState("All");
 
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  const BASE_URL = "/api/tmdb"; 
-
+  const BASE_URL = import.meta.env.DEV 
+          ? "https://api.themoviedb.org/3" 
+          : "/api/tmdb";
   const genres = [
     { name: "Action", id: 28 },
     { name: "Adventure", id: 12 },
