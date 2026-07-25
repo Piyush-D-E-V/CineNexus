@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useWatchlist } from "../context/WatchlistContext"; 
-import { VEGAMOVIES_BASE_URL, ROGMOVIES_BASE_URL } from "../config"; // 🚨 ROGMOVIES IMPORT KIYA
+import { VEGAMOVIES_BASE_URL, ROGMOVIES_BASE_URL } from "../config";
 
 const Details = () => {
   const { mediaType = "movie", id } = useParams();
@@ -66,8 +66,10 @@ const Details = () => {
   const releaseYear = data.release_date?.slice(0, 4) || data.first_air_date?.slice(0, 4) || "N/A";
   const isMovieAdded = isAdded(data.id);
 
+  // OTT Data & Deep Linking setup
   const watchData = data["watch/providers"]?.results;
   const regionData = watchData?.IN || watchData?.US; 
+  const tmdbOttLink = regionData?.link; // TMDB's master link for deep-linking
 
   const allPlatforms = [
     ...(regionData?.flatrate || []),
@@ -77,8 +79,10 @@ const Details = () => {
     ...(regionData?.buy || [])
   ];
 
+  // Remove duplicates
   const streamingPlatforms = Array.from(new Map(allPlatforms.map(p => [p.provider_id, p])).values());
 
+  // 45-day Theater Logic
   const checkInTheaters = () => {
     if (mediaType !== "movie" || !data.release_date) return false;
     const releaseDate = new Date(data.release_date);
@@ -91,21 +95,17 @@ const Details = () => {
   const inTheaters = checkInTheaters();
   const formattedTitle = encodeURIComponent(data.title || data.name);
 
-  // 🚨 NEW: INDIAN MOVIE CHECK LOGIC
+  // Indian Movie Check Logic
   const checkIsIndian = () => {
-    // 1. Check if production country is India
     const fromIndia = data.production_countries?.some(country => country.iso_3166_1 === "IN");
-    
-    // 2. Check if the original language is an Indian language
     const indianLanguages = ["hi", "ta", "te", "ml", "kn", "bn", "pa", "gu", "mr"];
     const isIndianLang = indianLanguages.includes(data.original_language);
-
     return fromIndia || isIndianLang;
   };
 
   const isIndianMovie = checkIsIndian();
 
-  // 🚨 NEW: DYNAMIC DOWNLOAD HANDLER
+  // Dynamic Download Handler
   const handleDownloadClick = () => {
     const downloadBaseUrl = isIndianMovie ? ROGMOVIES_BASE_URL : VEGAMOVIES_BASE_URL;
     window.open(`${downloadBaseUrl}/?s=${formattedTitle}`, '_blank');
@@ -148,11 +148,14 @@ const Details = () => {
                 <p className="text-slate-400 text-sm font-bold mb-3 uppercase tracking-wider">Available to Watch</p>
                 <div className="flex flex-wrap gap-3">
                   {streamingPlatforms.map(platform => {
+                    // Fallback to Google Search if TMDB deep link is missing
                     const smartSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`Watch ${data.title || data.name} on ${platform.provider_name}`)}`;
+                    const finalOttLink = tmdbOttLink || smartSearchUrl;
+                    
                     return (
                       <a 
                         key={platform.provider_id} 
-                        href={smartSearchUrl} 
+                        href={finalOttLink} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-xl overflow-hidden shadow-md hover:scale-110 hover:shadow-purple-500/50 transition-all border border-slate-700 bg-white"
@@ -198,7 +201,6 @@ const Details = () => {
             {/* ACTION BUTTONS */}
             <div className="flex flex-wrap gap-4">
               
-              {/* 🚨 DYNAMIC DOWNLOAD BUTTON */}
               <button 
                 onClick={handleDownloadClick}
                 className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-600 text-white border-blue-500 hover:bg-blue-700 shadow-blue-900/30"
@@ -206,7 +208,6 @@ const Details = () => {
                 ⬇️ Download Movie
               </button>
 
-              {/* BOOK TICKETS (ONLY IF IN THEATERS) */}
               {inTheaters && (
                 <button 
                   onClick={() => window.open(`https://www.google.com/search?q=${formattedTitle}+movie+tickets+bookmyshow`, '_blank')}

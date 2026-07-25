@@ -60,7 +60,7 @@ const Watchlist = () => {
                     ✕
                   </button>
 
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute bottom-1 left-1 rounded-xl  bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button className="bg-purple-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg">
                       Details
                     </button>
