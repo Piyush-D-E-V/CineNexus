@@ -69,7 +69,6 @@ const Details = () => {
   // OTT Data & Deep Linking setup
   const watchData = data["watch/providers"]?.results;
   const regionData = watchData?.IN || watchData?.US; 
-  const tmdbOttLink = regionData?.link; // TMDB's master link for deep-linking
 
   const allPlatforms = [
     ...(regionData?.flatrate || []),
@@ -148,14 +147,13 @@ const Details = () => {
                 <p className="text-slate-400 text-sm font-bold mb-3 uppercase tracking-wider">Available to Watch</p>
                 <div className="flex flex-wrap gap-3">
                   {streamingPlatforms.map(platform => {
-                    // Fallback to Google Search if TMDB deep link is missing
+                    // 🚨 FIX: Wapas Google Bypass use kar rahe hain. Google mobile par automatically native apps ke links deta hai.
                     const smartSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(`Watch ${data.title || data.name} on ${platform.provider_name}`)}`;
-                    const finalOttLink = tmdbOttLink || smartSearchUrl;
                     
                     return (
                       <a 
                         key={platform.provider_id} 
-                        href={finalOttLink} 
+                        href={smartSearchUrl} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="w-12 h-12 rounded-xl overflow-hidden shadow-md hover:scale-110 hover:shadow-purple-500/50 transition-all border border-slate-700 bg-white"
