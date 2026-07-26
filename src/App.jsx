@@ -1,12 +1,13 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
-import { WatchlistProvider } from "./context/WatchlistContext";// <-- Import provider
+import { WatchlistProvider } from "./context/WatchlistContext"; // <-- Import provider
 import Navbar from "./Homepage/Navbar"; 
 import Home from "./Homepage/Home"; 
 import SearchPage from "./Components/SearchPage";
 import Details from "./Details/Details";
 import ViewAll from "./Homepage/ViewAll";
 import Watchlist from "./Components/Watchlist";
+import Login from "./Components/Login"; // <-- 1. Naya Login import kiya (Path check kar lena)
 
 const RootLayout = () => (
   <>
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
       { path: "search", element: <SearchPage /> },
       { path: "details/:mediaType/:id", element: <Details /> },
       { path: "view-all/:category", element: <ViewAll /> },
+      { path: "login", element: <Login /> }, // <-- 2. Login ka route add kar diya
     ],
   },
 ]);

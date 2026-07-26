@@ -11,15 +11,19 @@ export const WatchlistProvider = ({ children }) => {
   // 2. App start hote hi Supabase se watchlist fetch karna
   useEffect(() => {
     const fetchWatchlist = async () => {
-      const { data, error } = await supabase.from("watchlist").select("*");
+      // Pehle check karo ki user logged in hai ya nahi
+      const { data: { session } } = await supabase.auth.getSession();
       
-      if (error) {
-        console.error("Error fetching from cloud:", error);
+      if (session) {
+        const { data, error } = await supabase.from("watchlist").select("*");
+        if (error) {
+          console.error("Error fetching from cloud:", error);
+        } else if (data) {
+          const cloudMovies = data.map(row => row.movie_data);
+          setWatchlist(cloudMovies);
+        }
       } else {
-        // Supabase humein [{ movie_id: 123, movie_data: {...} }] format mein data dega
-        // Hum usme se actual movie data extract karke array mein set karenge
-        const cloudMovies = data.map(row => row.movie_data);
-        setWatchlist(cloudMovies);
+        setWatchlist([]); // Agar login nahi hai toh list khali rakho
       }
       setLoading(false);
     };
@@ -29,6 +33,15 @@ export const WatchlistProvider = ({ children }) => {
 
   // 3. Add movie (Local state + Cloud DB)
   const addToWatchlist = async (movie) => {
+    // 🚨 LOGIN CHECK: Supabase se pucho user logged in hai ya nahi
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      // Agar session nahi hai, toh seedha Login page par redirect kar do
+      window.location.href = "/login";
+      return; // Code yahin ruk jayega, fake add nahi hoga
+    }
+
     if (!watchlist.some((item) => item.id === movie.id)) {
       // Optimistic update: UI mein turant add karo jisse lag na feel ho
       setWatchlist([...watchlist, movie]);
@@ -70,6 +83,5 @@ export const WatchlistProvider = ({ children }) => {
   );
 };
 
-// ADD THIS EXACT LINE TO FIX THE ERROR:
 // eslint-disable-next-line react-refresh/only-export-components
 export const useWatchlist = () => useContext(WatchlistContext);
