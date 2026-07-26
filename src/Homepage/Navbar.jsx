@@ -40,7 +40,7 @@ const Navbar = () => {
         {/* ROW 1 (Mobile): Logo + Buttons */}
         <div className="w-full flex justify-between items-center sm:w-auto">
           <Link to="/" className="text-2xl font-bold tracking-wider text-yellow-400 whitespace-nowrap">
-            🎬 MovieApp
+            🎬 CineNexus
           </Link>
           
           <div className="flex items-center gap-2 sm:gap-3">
@@ -57,7 +57,7 @@ const Navbar = () => {
             {user ? (
               <button 
                 onClick={handleLogout}
-                className="bg-red-600/90 hover:bg-red-500 text-white font-bold p-2.5 sm:py-2 sm:px-4 rounded-md transition-colors border border-red-500/50 flex items-center justify-center"
+                className="bg-red-600/90 hover:bg-red-500 text-white font-bold p-2.5 sm:py-2 sm:px-4 rounded-md transition-colors border border-red-500/50 flex items-center justify-center cursor-pointer"
                 title="Logout"
               >
                 <span className="text-lg leading-none sm:hidden">🚪</span>
@@ -88,7 +88,7 @@ const Navbar = () => {
             />
             <button 
               type="submit" 
-              className="bg-yellow-500 text-slate-900 font-bold px-5 py-2 rounded-md hover:bg-yellow-400 transition-colors whitespace-nowrap"
+              className="bg-yellow-500 text-slate-900 font-bold px-5 py-2 rounded-md hover:bg-yellow-400 transition-colors whitespace-nowrap cursor-pointer"
             >
               Search
             </button>

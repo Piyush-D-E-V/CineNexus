@@ -67,7 +67,7 @@ const Watchlist = () => {
                       e.stopPropagation();
                       removeFromWatchlist(movie.id);
                     }}
-                    className="absolute top-3 right-3 bg-red-600/90 hover:bg-red-700 text-white backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center font-bold z-20 border border-red-500/50 shadow-md transition-colors"
+                    className="absolute top-3 right-3 bg-red-600/90 hover:bg-red-700 text-white backdrop-blur-md rounded-full w-8 h-8 flex items-center justify-center font-bold z-20 border border-red-500/50 shadow-md transition-colors cursor-pointer"
                     title="Remove item"
                   >
                     ✕

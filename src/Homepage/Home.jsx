@@ -101,7 +101,7 @@ const HomePage = () => {
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           {heroTrailer ? (
             <iframe
-              className="w-full h-full object-cover scale-125 opacity-70"
+              className="w-full h-full object-cover object-center scale-125"
               src={`https://www.youtube.com/embed/${heroTrailer.key}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${heroTrailer.key}`}
               title="Trailer"
               allow="autoplay; encrypted-media"
@@ -175,7 +175,7 @@ const HomePage = () => {
                 <button
                   key={genre.id}
                   onClick={() => handleGenreClick(genre.name, genre.id)}
-                  className={`px-6 py-2 rounded-full text-sm font-bold transition-colors whitespace-nowrap ${activeGenre === genre.name ? "bg-purple-600 text-white shadow-lg shadow-purple-900/30" : "bg-slate-800/50 border border-slate-700 text-slate-300 hover:bg-slate-700"}`}
+                  className={`cursor-pointer px-6 py-2 rounded-full text-sm font-bold transition-colors whitespace-nowrap ${activeGenre === genre.name ? "bg-purple-600 text-white shadow-lg shadow-purple-900/30" : "bg-slate-800/50 border border-slate-700 text-slate-300 hover:bg-slate-700"}`}
                 >
                   {genre.name}
                 </button>
