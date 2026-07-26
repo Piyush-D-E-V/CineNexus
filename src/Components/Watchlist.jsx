@@ -8,10 +8,12 @@ const Watchlist = () => {
   return (
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans p-6 md:p-12">
       <div className="max-w-7xl mx-auto">
-        
         {/* Header */}
         <h1 className="text-3xl font-extrabold text-white tracking-wide mb-10 border-b border-slate-800/60 pb-4">
-          My Watchlist <span className="text-purple-500 text-xl ml-2">({watchlist.length})</span>
+          My Watchlist{" "}
+          <span className="text-purple-500 text-xl ml-2">
+            ({watchlist.length})
+          </span>
         </h1>
 
         {/* --- EMPTY STATE HANDLING --- */}
@@ -20,11 +22,14 @@ const Watchlist = () => {
             <div className="w-16 h-16 bg-slate-800/60 text-purple-400 rounded-2xl flex items-center justify-center text-3xl font-bold mb-4">
               🔖
             </div>
-            <h2 className="text-xl font-bold text-white mb-2">Your Watchlist is empty</h2>
+            <h2 className="text-xl font-bold text-white mb-2">
+              Your Watchlist is empty
+            </h2>
             <p className="text-slate-400 text-center max-w-sm mb-6 text-sm">
-              Explore your home dashboard and save trending movies or shows to watch them later.
+              Explore your home dashboard and save trending movies or shows to
+              watch them later.
             </p>
-            <button 
+            <button
               onClick={() => navigate("/")}
               className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2.5 px-6 rounded-xl transition-colors shadow-lg shadow-purple-900/40"
             >
@@ -32,24 +37,32 @@ const Watchlist = () => {
             </button>
           </div>
         ) : (
-          
           /* --- LIST RENDERING --- */
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
             {watchlist.map((movie) => (
-              <div 
-                key={movie.id} 
-                onClick={() => navigate(`/details/movie/${movie.id}`)}
+              <div
+                key={movie.id}
+                onClick={() => {
+                  const type =
+                    movie.media_type ||
+                    (movie.first_air_date || movie.name ? "tv" : "movie");
+                  navigate(`/details/${type}/${movie.id}`);
+                }}
                 className="flex flex-col gap-2 group cursor-pointer relative"
               >
                 <div className="relative overflow-hidden rounded-xl aspect-2/3 border border-slate-800 group-hover:border-purple-500 transition-colors bg-slate-900">
-                  <img 
-                    src={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "https://via.placeholder.com/500x750?text=No+Poster"} 
-                    alt={movie.title || movie.name} 
+                  <img
+                    src={
+                      movie.poster_path
+                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                        : "https://via.placeholder.com/500x750?text=No+Poster"
+                    }
+                    alt={movie.title || movie.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  
+
                   {/* Delete Button inside the Watchlist page grid */}
-                  <button 
+                  <button
                     onClick={(e) => {
                       e.stopPropagation();
                       removeFromWatchlist(movie.id);
@@ -70,8 +83,12 @@ const Watchlist = () => {
                   {movie.title || movie.name}
                 </h3>
                 <p className="text-xs text-slate-400 font-semibold">
-                  {movie.release_date?.slice(0, 4) || movie.first_air_date?.slice(0, 4) || "N/A"} 
-                  <span className="text-purple-500 ml-2">⭐ {movie.vote_average?.toFixed(1)}</span>
+                  {movie.release_date?.slice(0, 4) ||
+                    movie.first_air_date?.slice(0, 4) ||
+                    "N/A"}
+                  <span className="text-purple-500 ml-2">
+                    ⭐ {movie.vote_average?.toFixed(1)}
+                  </span>
                 </p>
               </div>
             ))}
