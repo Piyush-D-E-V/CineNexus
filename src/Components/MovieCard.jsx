@@ -35,7 +35,7 @@ const MovieCard = ({ movie }) => {
         
         <button 
           onClick={handleWatchlistToggle}
-          className={`absolute -top-1 -right-1 rounded-bl-xl w-10 h-6 flex items-center justify-center font-bold z-20 border transition-all cursor-pointer text-center sm:w-15 ${
+          className={`absolute -top-1 -right-1 rounded-bl-xl w-14 h-6 flex items-center justify-center font-bold z-20 border transition-all cursor-pointer text-center ${
             isAdded(movie.id)
               ? "bg-green-600 text-white border-green-400 shadow-md shadow-green-900/40"
               : "bg-black/60 hover:bg-purple-600 text-white border-slate-500/50 hover:border-purple-400"

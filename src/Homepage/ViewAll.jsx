@@ -71,7 +71,7 @@ const ViewAll = () => {
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans pb-16">
       
       {/* --- HEADER --- */}
-      <div className="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-800/60 flex items-center justify-between sticky top-0 bg-[#0b0b13]/90 backdrop-blur-md z-20">
+      <div className="max-w-7xl mx-auto px-6 pt-10 pb-6 border-b border-slate-800/60 flex items-center justify-between sticky top-0 bg-[#0b0b13]/90 backdrop-blur-md z-40">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate(-1)} 
