@@ -117,7 +117,7 @@ const Details = () => {
       <div className="relative w-full h-[40vh] md:h-[55vh] hidden md:block">
         <button 
           onClick={() => navigate(-1)} 
-          className="absolute top-8 left-8 z-20 w-12 h-12 bg-black/50 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-colors"
+          className="cursor-pointer absolute top-8 left-8 z-20 w-12 h-12 bg-black/50 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-colors"
         >
           ←
         </button>
@@ -201,7 +201,7 @@ const Details = () => {
               
               <button 
                 onClick={handleDownloadClick}
-                className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-600 text-white border-blue-500 hover:bg-blue-700 shadow-blue-900/30"
+                className="cursor-pointer flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-blue-500 text-white border-blue-500 hover:bg-blue-600 shadow-blue-900/30"
               >
                 ⬇️ Download Movie
               </button>
@@ -209,7 +209,7 @@ const Details = () => {
               {inTheaters && (
                 <button 
                   onClick={() => window.open(`https://www.google.com/search?q=${formattedTitle}+movie+tickets+bookmyshow`, '_blank')}
-                  className="flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-pink-600 text-white border-pink-500 hover:bg-pink-700 shadow-pink-900/30"
+                  className="cursor-pointer flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg bg-pink-500 text-white border-pink-500 hover:bg-pink-600 shadow-pink-900/30"
                 >
                   🎟️ Book Tickets
                 </button>
@@ -226,7 +226,7 @@ const Details = () => {
               
               <button 
                 onClick={() => isMovieAdded ? removeFromWatchlist(data.id) : addToWatchlist(data)}
-                className={`flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg ${
+                className={`cursor-pointer flex items-center justify-center gap-2 px-8 py-3 rounded-xl font-bold text-lg transition-all border shadow-lg ${
                   isMovieAdded
                     ? "bg-green-600 text-white border-green-500 hover:bg-green-700 shadow-green-900/30"
                     : "bg-slate-800 text-white border-slate-600 hover:bg-purple-600 hover:border-purple-500 shadow-purple-900/20"
@@ -248,7 +248,7 @@ const Details = () => {
         {data.credits?.cast?.length > 0 && (
           <button 
             onClick={() => scrollCast("left")}
-            className="absolute left-0 top-[55%] z-20 w-12 h-12 bg-black/80 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 hidden md:flex shadow-xl shadow-black -translate-x-4"
+            className="cursor-pointer absolute text-center right-15 top-0 z-20 w-12 h-12 bg-black/80 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 hidden md:flex shadow-xl shadow-black -translate-x-4"
           >
             ←
           </button>
@@ -277,7 +277,7 @@ const Details = () => {
         {data.credits?.cast?.length > 0 && (
           <button 
             onClick={() => scrollCast("right")}
-            className="absolute right-0 top-[55%] z-20 w-12 h-12 bg-black/80 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 hidden md:flex shadow-xl shadow-black translate-x-4"
+            className="cursor-pointer absolute right-10 top-0 z-20 w-12 h-12 bg-black/80 hover:bg-purple-600 text-white rounded-full flex items-center justify-center font-bold border border-slate-600 backdrop-blur-md transition-all opacity-0 group-hover:opacity-100 hidden md:flex shadow-xl shadow-black translate-x-4"
           >
             →
           </button>

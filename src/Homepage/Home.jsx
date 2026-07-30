@@ -15,9 +15,9 @@ const HomePage = () => {
   const [activeGenre, setActiveGenre] = useState("All");
 
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
-  const BASE_URL = import.meta.env.DEV 
-          ? "https://api.themoviedb.org/3" 
-          : "/api/tmdb";
+  const BASE_URL = import.meta.env.DEV
+    ? "https://api.themoviedb.org/3"
+    : "/api/tmdb";
   const genres = [
     { name: "Action", id: 28 },
     { name: "Adventure", id: 12 },
@@ -35,48 +35,51 @@ const HomePage = () => {
           return data.results;
         };
 
-        const [trendingData, popularData, topRatedData, upcomingData] = await Promise.all([
-          fetchData(`/trending/movie/day?api_key=${apiKey}`),
-          fetchData(`/movie/popular?api_key=${apiKey}`),
-          fetchData(`/movie/top_rated?api_key=${apiKey}`),
-          fetchData(`/movie/upcoming?api_key=${apiKey}`)
-        ]);
+        const [trendingData, popularData, topRatedData, upcomingData] =
+          await Promise.all([
+            fetchData(`/trending/movie/day?api_key=${apiKey}`),
+            fetchData(`/movie/popular?api_key=${apiKey}`),
+            fetchData(`/movie/top_rated?api_key=${apiKey}`),
+            fetchData(`/movie/upcoming?api_key=${apiKey}`),
+          ]);
 
         // Fetching Oscar Data smoothly
         const oscarRes = await fetch(`${BASE_URL}/list/28?api_key=${apiKey}`);
         const oscarData = await oscarRes.json();
 
         // Fetching Hero Details smoothly
-        const heroId = trendingData[0].id;
-        const heroDetailsRes = await fetch(`${BASE_URL}/movie/${heroId}?api_key=${apiKey}&append_to_response=videos`);
+        const heroId = trendingData[1].id;
+        const heroDetailsRes = await fetch(
+          `${BASE_URL}/movie/${heroId}?api_key=${apiKey}&append_to_response=videos`,
+        );
         const heroDetails = await heroDetailsRes.json();
 
         setHeroMovie(heroDetails);
-        
-        setTrending(trendingData.slice(1, 4)); 
-        setPopular(popularData.slice(0, 4)); 
-        setUpcoming(upcomingData.slice(4, 8)); 
-        setTopRated(topRatedData.slice(0, 5));
-        setOscarMovies(oscarData.items?.slice(0, 10) || []); 
 
+        setTrending(trendingData.slice(1, 4));
+        setPopular(popularData.slice(0, 4));
+        setUpcoming(upcomingData.slice(4, 8));
+        setTopRated(topRatedData.slice(0, 5));
+        setOscarMovies(oscarData.items?.slice(0, 10) || []);
       } catch (error) {
         console.error("Failed to fetch home page data:", error);
       }
     };
 
     fetchHomeData();
-  }, [apiKey]);
+  }, [BASE_URL,apiKey]);
 
   const handleGenreClick = async (genreName, genreId) => {
     setActiveGenre(genreName);
     try {
-      const endpoint = genreName === "All" 
-        ? `/movie/popular?api_key=${apiKey}`
-        : `/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
-        
+      const endpoint =
+        genreName === "All"
+          ? `/movie/popular?api_key=${apiKey}`
+          : `/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+
       const res = await fetch(`${BASE_URL}${endpoint}`);
       const data = await res.json();
-      
+
       setPopular(data.results.slice(0, 8));
     } catch (error) {
       console.error("Error fetching genre:", error);
@@ -98,10 +101,12 @@ const HomePage = () => {
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans p-4 md:p-8">
       {/* --- HERO SECTION --- */}
       <div className="relative w-full h-125 md:h-150 rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 bg-black max-w-[1600px] mx-auto">
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
+       
+        <div className="absolute scale-110 md:scale-140 inset-0 w-full h-full overflow-hidden pointer-events-none">
           {heroTrailer ? (
             <iframe
-              className="w-full h-full object-cover object-center scale-125"
+              // 🚨 YAHAN HAI MAGIC CLASS 🚨
+              className="absolute  top-1/2 left-1/2 w-screen h-screen min-h-screen min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
               src={`https://www.youtube.com/embed/${heroTrailer.key}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${heroTrailer.key}`}
               title="Trailer"
               allow="autoplay; encrypted-media"
@@ -114,15 +119,12 @@ const HomePage = () => {
             />
           )}
         </div>
-
-        <div className="absolute inset-0 bg-linear-to-r from-[#0b0b13] via-[#0b0b13]/50 to-transparent pointer-events-none"></div>
-        <div className="absolute inset-0 bg-linear-to-t from-[#0b0b13] via-transparent to-transparent pointer-events-none"></div>
-
-        <div className="relative z-10 flex flex-col justify-center h-full max-w-2xl px-8 md:px-16 pointer-events-auto">
+        <div className="absolute inset-0 bg-linear-to-r from-[#0b0b13]/50 to-transparent pointer-events-none"></div>
+        <div className="relative z-10 flex flex-col justify-end pb-2 md:pb-5 h-full max-w-2xl px-2 md:px-5 pointer-events-auto">
           <p className="text-purple-500 font-bold tracking-widest text-sm mb-2 uppercase">
             Now Playing
           </p>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-4 leading-tight">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4 leading-tight">
             {heroMovie.title}
           </h1>
 
@@ -153,7 +155,7 @@ const HomePage = () => {
             title="Trending Now"
             viewAllLink="/view-all/trending"
           >
-            <div className="grid grid-cols-3 gap-2 sm:gap-6">
+            <div className="grid grid-cols-3 gap-1 sm:gap-6">
               {trending.map((movie) => (
                 <MovieCard key={movie.id} movie={movie} />
               ))}

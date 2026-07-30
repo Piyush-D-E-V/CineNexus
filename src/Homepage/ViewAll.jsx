@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+// 🚨 UPDATE 1: useSearchParams ko import kiya
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import MovieCard from "../Components/MovieCard"; 
 
 const ViewAll = () => {
   const { category } = useParams();
   const navigate = useNavigate();
   
+  // 🚨 UPDATE 2: useState(1) hata kar URL se page number nikalne ka logic lagaya
+  const [searchParams, setSearchParams] = useSearchParams();
+  const page = parseInt(searchParams.get("page")) || 1;
+
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  // 🚨 FIX 1: Added "oscars" to the category configuration!
   const categoryConfig = {
     trending: { endpoint: "/trending/movie/day", title: "Trending Now" },
     popular: { endpoint: "/movie/popular", title: "Popular Movies" },
@@ -20,7 +23,6 @@ const ViewAll = () => {
     oscars: { endpoint: "/list/28", title: "🏆 Oscar Winners" }, 
   };
 
-  // If the category is not found, it defaults to popular.
   const currentCategory = categoryConfig[category] || categoryConfig.popular;
 
   useEffect(() => {
@@ -34,7 +36,6 @@ const ViewAll = () => {
           ? "https://api.themoviedb.org/3" 
           : "/api/tmdb";
         
-        // Clean target URL creation
         const targetUrl = `${BASE_URL}${currentCategory.endpoint}?api_key=${apiKey}&page=${page}`;
         const response = await fetch(targetUrl);
         const data = await response.json();
@@ -49,10 +50,22 @@ const ViewAll = () => {
     };
 
     fetchMovies();
-  }, [category, page, currentCategory.endpoint]);
+  }, [category, page, currentCategory.endpoint]); // 🚨 page yahan same rahega, React khud track karega
 
-  const handlePrevPage = () => setPage((prev) => (prev > 1 ? prev - 1 : prev));
-  const handleNextPage = () => setPage((prev) => (prev < totalPages ? prev + 1 : prev));
+  // 🚨 UPDATE 3: Buttons ab URL change karenge, local state nahi
+  const handlePrevPage = () => {
+    if (page > 1) {
+      searchParams.set("page", page - 1);
+      setSearchParams(searchParams);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      searchParams.set("page", page + 1);
+      setSearchParams(searchParams);
+    }
+  };
 
   return (
     <div className="bg-[#0b0b13] min-h-screen text-slate-200 font-sans pb-16">
