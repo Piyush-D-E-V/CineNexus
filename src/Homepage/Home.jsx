@@ -102,7 +102,7 @@ const HomePage = () => {
       {/* --- HERO SECTION --- */}
       <div className="relative w-full h-125 md:h-150 rounded-3xl overflow-hidden shadow-2xl border border-slate-800 mb-10 bg-black max-w-[1600px] mx-auto">
        
-        <div className="absolute scale-110 md:scale-140 inset-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
           {heroTrailer ? (
             <iframe
               // 🚨 YAHAN HAI MAGIC CLASS 🚨
