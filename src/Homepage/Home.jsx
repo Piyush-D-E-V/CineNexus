@@ -48,7 +48,7 @@ const HomePage = () => {
         const oscarData = await oscarRes.json();
 
         // Fetching Hero Details smoothly
-        const heroId = trendingData[1].id;
+        const heroId = trendingData[0].id;
         const heroDetailsRes = await fetch(
           `${BASE_URL}/movie/${heroId}?api_key=${apiKey}&append_to_response=videos`,
         );
@@ -80,7 +80,7 @@ const HomePage = () => {
       const res = await fetch(`${BASE_URL}${endpoint}`);
       const data = await res.json();
 
-      setPopular(data.results.slice(0, 8));
+      setPopular(data.results.slice(0, 4));
     } catch (error) {
       console.error("Error fetching genre:", error);
     }
@@ -107,7 +107,7 @@ const HomePage = () => {
             <iframe
               // 🚨 YAHAN HAI MAGIC CLASS 🚨
               className="absolute  top-1/2 left-1/2 w-screen h-screen min-h-screen min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2"
-              src={`https://www.youtube.com/embed/${heroTrailer.key}?autoplay=1&mute=1&controls=0&showinfo=0&rel=0&loop=1&playlist=${heroTrailer.key}`}
+              src={`https://www.youtube-nocookie.com/embed/${heroTrailer.key}?autoplay=1&mute=1&controls=0&rel=0&loop=1&playlist=${heroTrailer.key}`}
               title="Trailer"
               allow="autoplay; encrypted-media"
             ></iframe>

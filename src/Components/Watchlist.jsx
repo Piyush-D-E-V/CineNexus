@@ -38,7 +38,7 @@ const Watchlist = () => {
           </div>
         ) : (
           /* --- LIST RENDERING --- */
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 scroll-smooth">
             {watchlist.map((movie) => (
               <div
                 key={movie.id}
@@ -59,6 +59,7 @@ const Watchlist = () => {
                     }
                     alt={movie.title || movie.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
                   />
 
                   {/* Delete Button inside the Watchlist page grid */}

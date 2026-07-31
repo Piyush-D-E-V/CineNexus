@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase";
 
 const Login = () => {
@@ -7,7 +6,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -20,7 +18,7 @@ const Login = () => {
       setErrorMsg(error.message);
     } else {
       alert("Account created successfully! Logging you in...");
-      navigate("/"); // Home page par bhejo
+      window.location.href = "/";; // Home page par bhejo
     }
     setLoading(false);
   };
@@ -29,13 +27,13 @@ const Login = () => {
     e.preventDefault();
     setErrorMsg("");
     if (!email || !password) return setErrorMsg("Please enter both email and password");
-    
+  
     setLoading(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setErrorMsg(error.message);
     } else {
-      navigate("/"); // Login hote hi Home page par wapas bhejo
+      window.location.href = "/"; // Login hote hi Home page par wapas bhejo
     }
     setLoading(false);
   };

@@ -23,6 +23,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
+    window.location.href = "/";
   };
 
   function handleSearch(e) {
