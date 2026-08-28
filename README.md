@@ -178,6 +178,21 @@ Through CineNexus, I worked with:
 
 ---
 
+## 📸 Screenshots
+
+### Home
+
+![Home](https://github.com/Piyush-D-E-V/CineNexus/blob/3a5e1d96d26f0df9dd55e35e772dc28324e4d2a5/screenshots/CineNexus.png)
+
+### Watchlist
+
+![Watchlist](https://github.com/Piyush-D-E-V/CineNexus/blob/3a5e1d96d26f0df9dd55e35e772dc28324e4d2a5/screenshots/CineNexus%20-%20Brave%2002-08-2026%2017_29_19.png)
+
+### Movie details
+
+![Movie details](https://github.com/Piyush-D-E-V/CineNexus/blob/3a5e1d96d26f0df9dd55e35e772dc28324e4d2a5/screenshots/CineNexus%20-%20Brave%2002-08-2026%2017_29_56.png)
+![Movie details](https://github.com/Piyush-D-E-V/CineNexus/blob/3a5e1d96d26f0df9dd55e35e772dc28324e4d2a5/screenshots/CineNexus%20-%20Brave%2002-08-2026%2017_30_10.png)
+
 ## 👨‍💻 Author
 
 **Piyush**
