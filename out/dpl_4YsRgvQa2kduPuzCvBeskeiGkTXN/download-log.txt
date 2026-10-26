@@ -1,0 +1,122 @@
+🔑 Got authentication token
+
+🔍 Fetching latest deployment...
+✅ Found latest deployment (personal account)
+
+📦 Deployment ID:  dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN
+🌐 Deployment URL: cinenexus-62y7pdh21-piyush-dev2.vercel.app
+📁 Project:        cinenexus
+
+📋 Fetching file tree from API...
+
+✅ Got file tree (11 top-level entries)
+
+📁 Output directory: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source
+
+🗑️  Clearing previous download...
+
+⬇️  Downloading files...
+   (Use --verbose to see detailed progress)
+
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\public\favicon.svg
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\public\icons.svg
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\.gitkeep
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_29_19.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_29_56.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_30_10.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_31_44.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\.txt
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\Login.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\MovieCard.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\SearchPage.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\Watchlist.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Details\Details.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\Home.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\MovieRow.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\Navbar.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\ViewAll.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\hero.png
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\react.svg
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\vite.svg
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\context\WatchlistContext.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\App.css
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\App.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\config.js
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\index.css
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\main.jsx
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\supabase.js
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\.gitignore
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\README.md
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\eslint.config.js
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\index.html
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\package-lock.json
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\package.json
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\vercel.json
+✅ Downloaded: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\vite.config.js
+
+🎉 All files processed successfully!
+
+📊 Running comparison...
+
+📁 Total files: 36
+   ✅ Downloaded: 36
+   ⏭️  Skipped: 0
+   ❌ Failed: 0
+💾 Total size: 10.61 MB
+
+📈 File types breakdown:
+   jsx               12 files
+   png                6 files
+   svg                4 files
+   js                 4 files
+   json               3 files
+   css                2 files
+   gitkeep            1 files
+   txt                1 files
+   gitignore          1 files
+   md                 1 files
+
+🌳 File structure tree:
+
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\.gitignore
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\eslint.config.js
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\index.html
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\package-lock.json
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\package.json
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\public\favicon.svg
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\public\icons.svg
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\README.md
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\.gitkeep
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_29_19.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_29_56.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_30_10.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus - Brave 02-08-2026 17_31_44.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\screenshots\CineNexus.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\App.css
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\App.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\hero.png
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\react.svg
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\assets\vite.svg
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\.txt
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\Login.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\MovieCard.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\SearchPage.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Components\Watchlist.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\config.js
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\context\WatchlistContext.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Details\Details.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\Home.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\MovieRow.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\Navbar.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\Homepage\ViewAll.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\index.css
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\main.jsx
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\src\supabase.js
+├── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\vercel.json
+└── 📄 C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\source\vite.config.js
+
+✨ Download and verification complete!
+📄 Full log saved to: C:\Users\pc\Desktop\my-porfolio\moviefinder2\out\dpl_4YsRgvQa2kduPuzCvBeskeiGkTXN\download-log.txt
+   (Use --verbose to see file tree and skipped files)
+
